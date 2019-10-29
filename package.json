@@ -1,0 +1,26 @@
+{
+  "name": "br.unicamp.educorp.jscourse",
+  "version": "1.0.0",
+  "description": "Javascript Course Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbvasconcelos/curso-javascript-educorp.git"
+  },
+  "author": "Derek Vasconcelos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dbvasconcelos/curso-javascript-educorp/issues"
+  },
+  "homepage": "https://github.com/dbvasconcelos/curso-javascript-educorp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
