@@ -1,7 +1,7 @@
 {
-  "name": "br.unicamp.educorp.jscourse",
+  "name": "br.unicamp.educorp.cursojs",
   "version": "1.0.0",
-  "description": "Javascript Course Project",
+  "description": "Curso Javascript Educorp",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/dbvasconcelos/curso-javascript-educorp#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
+    "express": "^4.17.1",
+    "marko": "^4.18.20",
+    "mysql": "^2.17.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
