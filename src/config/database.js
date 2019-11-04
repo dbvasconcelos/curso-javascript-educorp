@@ -1,23 +1,23 @@
-const mysql = require("mysql");
+const mysql = require('mysql');
 
-const hostname = "localhost";
-const user = "root";
-const password = "";
-const database = "turma5";
+const host = 'localhost';
+const usuario = 'root';
+const senha = '';
+const schema = 'turma5';
 
-const connection = mysql.createConnection({
-    host: hostname,
-    user: user,
-    password: password,
-    database: database
+const db = mysql.createConnection({
+    host: host,
+    user: usuario,
+    password: senha,
+    database: schema
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.log("Error connecting to database");
+db.connect((erro) => {
+    if (erro) {
+        console.log('Erro conectando ao banco de dados');
     } else {
-        console.log("Mysql running")
+        console.log('MySQL conectado')
     }
 });
 
-module.exports = connection;
+module.exports = db;

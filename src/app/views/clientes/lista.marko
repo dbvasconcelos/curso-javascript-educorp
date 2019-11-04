@@ -16,15 +16,17 @@
                         <td>EMAIL</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr align="center" for (client in data.clients)>
-                        <td>${client.idClie}</td>
-                        <td>${client.cpfClie}</td>
-                        <td>${client.nomeClie}</td>
-                        <td>${client.dataNiverClie}</td>
-                        <td>${client.emailClie}</td>
-                    </tr>
-                </tbody>
+                <for|client| of="data.clients">
+                    <tbody>
+                        <tr align="center">
+                            <td>${client.idClie}</td>
+                            <td>${client.cpfClie}</td>
+                            <td>${client.nomeClie}</td>
+                            <td>${client.dataNiverClie}</td>
+                            <td>${client.emailClie}</td>
+                        </tr>
+                    </tbody>
+                </for>
             </table>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
