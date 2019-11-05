@@ -19,49 +19,48 @@ class ClienteController {
         }
     }
 
-    formulario() {
+    criacao() {
         return (req,res) => {
-            if (req.params.id) {
-                const clienteDao = new ClienteDao(bd);
-                clienteDao.buscaPorId(req.params.id)
-                    .then(cliente => 
-                        res.marko(
-                        require('../views/clientes/cadastro.marko'),
+            res.marko(
+                require('../views/clientes/formulario.marko'),
+                {
+                    cliente: {}
+                }
+            )
+        }
+    }
+
+    edicao() {
+        return (req,res) => {
+            const clienteDao = new ClienteDao(bd);
+            clienteDao.buscaPorId(req.params.id)
+                .then(cliente => 
+                    res.marko(
+                        require('../views/clientes/formulario.marko'),
                         {
                             cliente: cliente[0]
                         }
-                    ))
-                    .catch(erro => console.log('Erro'));
-            } else {
-                res.marko(
-                    require('../views/clientes/cadastro.marko'),
-                    {
-                        cliente: {
-                            idClie: '',
-                            nomeClie: '',
-                            cpfClie: '',
-                            dataNiverClie: '',
-                            emailClie: ''
-                        }
-                    }
+                    )
                 )
-            }
+                .catch(erro => console.log(erro));
         }
     }
 
     insere() {
         return (req, res) => {
             const clienteDao = new ClienteDao(bd);
-            if (req.body.id) {
-                console.log('atualizando');
-                clienteDao.atualiza(req.body)
-                .then(res.redirect('/clientes/lista'))
+            clienteDao.insere(req.body)
+                .then(res.redirect('/clientes'))
                 .catch(erro => console.log(erro));
-            } else {
-                clienteDao.insere(req.body)
-                    .then(res.redirect('/clientes/lista'))
-                    .catch(erro => console.log(erro));
-            }
+        }
+    }
+
+    atualiza() {
+        return (req, res) => {
+            const clienteDao = new ClienteDao(bd);
+            clienteDao.atualiza(req.body)
+                .then(res.redirect('/clientes'))
+                .catch(erro => console.log(erro));
         }
     }
 }

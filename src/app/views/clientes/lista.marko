@@ -12,16 +12,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/clientes/lista">Listagem</a>
+                        <a class="nav-link" href="/clientes">Listagem</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/clientes/cadastro">Inclusão</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/clientes/exclusao">Exclusão</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/clientes/alteracao">Alteração</a>
+                        <a class="nav-link" href="/clientes/form">Inclusão</a>
                     </li>
                 </ul>
             </div>
@@ -39,6 +33,8 @@
                         <th>NOME</th>
                         <th>DATA ANIVERSARIO</th>
                         <th>EMAIL</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,7 +45,8 @@
                             <td>${cliente.nomeClie}</td>
                             <td>${cliente.dataNiverClie}</td>
                             <td>${cliente.emailClie}</td>
-                            <td><a href="/clientes/edita/${cliente.idClie}">EDITAR</a></td>
+                            <td><a href="/clientes/form/${cliente.idClie}">EDITAR</a></td>
+                            <td><a href="#" data-ref="${cliente.idClie}" data-type="remocao">REMOVER</a></td>
                         </tr>
                     </for>
                 </tbody>

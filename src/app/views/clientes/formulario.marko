@@ -12,16 +12,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/clientes/lista">Listagem</a>
+                        <a class="nav-link" href="/clientes">Listagem</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/clientes/cadastro">Inclusão</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/clientes/exclusao">Exclusão</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/clientes/alteracao">Alteração</a>
+                        <a class="nav-link" href="/clientes/form">Inclusão</a>
                     </li>
                 </ul>
             </div>
@@ -31,8 +25,11 @@
         <br>
         <h1>Cadastro de Clientes</h1>
         <div>
-            <form name="frm_cadastro" action="/clientes/insere" method="post">
-                <input type="hidden" id="id" name="id" value="${data.cliente.idClie}"/>
+            <form method="POST" action="/clientes" enctype="application/x-www-form-urlencoded">
+                <if (data.cliente.idClie)>
+                    <input type="hidden" name="_method" value="PUT" />
+                    <input type="hidden" id="id" name="id" value="${data.cliente.idClie}" />
+                </if>
                 <table>
                     <tr>
                         <td><label>CPF</label></td>
@@ -52,7 +49,7 @@
                     </tr>
                 </table>
                 <br>
-                <input type="submit" value="Inserir" name="btn_inserir" />
+                <input type="submit" value="Salvar" />
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
