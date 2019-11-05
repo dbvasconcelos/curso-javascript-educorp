@@ -10,5 +10,8 @@ module.exports = (app) => {
 
 	const ClienteController = require('../controllers/cliente-controller');
 	const clienteController = new ClienteController();
-	app.get('/clientes', clienteController.lista());
+	app.get('/clientes/lista', clienteController.lista());
+	app.get('/clientes/cadastro', clienteController.formulario());
+	app.get('/clientes/edita/:id', clienteController.formulario());
+	app.post('/clientes/insere', clienteController.insere());
 }
