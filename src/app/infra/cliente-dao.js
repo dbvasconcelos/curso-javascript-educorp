@@ -65,6 +65,21 @@ class ClienteDao {
             ); 
         });
     }
+
+    removePorId(id) {
+        return new Promise((resolve, reject) => {
+            this._bd.query(
+                `DELETE FROM clientes WHERE idClie = ?`,
+                [id],
+                (erro) => {
+                    if (erro) {
+                        return reject('Não foi possível remover cliente!');
+                    }
+                    return resolve();
+                }
+            );
+        });
+    }
 }
 
 module.exports = ClienteDao

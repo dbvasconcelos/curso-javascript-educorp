@@ -15,4 +15,5 @@ module.exports = (app) => {
 	app.get('/clientes/form/:id', clienteController.edicao());
 	app.post('/clientes', clienteController.insere());
 	app.put('/clientes', clienteController.atualiza());
+	app.delete('/clientes/:id', clienteController.remove());
 }

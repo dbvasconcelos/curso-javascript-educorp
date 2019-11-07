@@ -7,6 +7,8 @@ require('marko/express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
+app.use('/estatico', express.static('src/app/public'));
+
 // Allow JSON body parsing
 app.use(bodyParser.urlencoded({
     extended: true
@@ -21,7 +23,10 @@ app.use(methodOverride((req,res) => {
     }
 }));
 
-const rotas = require('../app/routes/cliente-routes');
-rotas(app);
+const rotasClientes = require('../app/routes/cliente-routes');
+rotasClientes(app);
+
+const rotasUsuarios = require('../app/routes/usuarios-routes');
+rotasUsuarios(app);
 
 module.exports = app;

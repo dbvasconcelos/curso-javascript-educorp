@@ -18,37 +18,41 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><title>Listagem de Clientes</title><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\"></head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><title>Listagem de Clientes</title><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<nav class=\"navbar navbar-expand-lg navbar-light bg-light fixed-top\"><a class=\"navbar-brand\" href=\"#\">Módulo CLIENTES</a><button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Alterna navegação\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNav\"><ul class=\"navbar-nav\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"/clientes/lista\">Listagem</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/clientes/cadastro\">Inclusão</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/clientes/exclusao\">Exclusão</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/clientes/alteracao\">Alteração</a></li></ul></div></nav><br><br><br><h1>Listagem de Clientes</h1><div><table class=\"table\" id=\"clientes\"><thead class=\"thead-dark\"><tr><th>CÓDIGO</th><th>CPF</th><th>NOME</th><th>DATA ANIVERSARIO</th><th>EMAIL</th></tr></thead><tbody>");
+  out.w("<nav class=\"navbar navbar-expand-lg navbar-light bg-light fixed-top\"><a class=\"navbar-brand\" href=\"#\">Módulo CLIENTES</a><button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Alterna navegação\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarNav\"><ul class=\"navbar-nav\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"/clientes\">Listagem</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"/clientes/form\">Inclusão</a></li></ul></div></nav><br><br><br><h1>Listagem de Clientes</h1><div><table class=\"table\" id=\"clientes\"><thead class=\"thead-dark\"><tr><th>CÓDIGO</th><th>CPF</th><th>NOME</th><th>DATA ANIVERSARIO</th><th>EMAIL</th><th></th><th></th></tr></thead><tbody>");
 
   var $for$0 = 0;
 
   marko_forEach(data.clientes, function(cliente) {
     var $keyScope$0 = "[" + (($for$0++) + "]");
 
-    out.w("<tr><td>" +
+    out.w("<tr" +
+      marko_attr("id", "cliente_" + cliente.idClie) +
+      "><td>`" +
       marko_escapeXml(cliente.idClie) +
-      "</td><td>" +
+      "`</td><td>`" +
       marko_escapeXml(cliente.cpfClie) +
-      "</td><td>" +
+      "`</td><td>`" +
       marko_escapeXml(cliente.nomeClie) +
-      "</td><td>" +
+      "`</td><td>`" +
       marko_escapeXml(cliente.dataNiverClie) +
-      "</td><td>" +
+      "`</td><td>`" +
       marko_escapeXml(cliente.emailClie) +
-      "</td><td><a" +
-      marko_attr("href", "/clientes/edita/" + cliente.idClie) +
-      ">EDITAR</a></td></tr>");
+      "`</td><td><a" +
+      marko_attr("href", "/clientes/form/" + cliente.idClie) +
+      ">EDITAR</a></td><td><a href=\"#\"" +
+      marko_attr("data-ref", "" + cliente.idClie) +
+      " data-type=\"remocao\">REMOVER</a></td></tr>");
   });
 
-  out.w("</tbody></table></div><script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\" crossorigin=\"anonymous\"></script><script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js\" integrity=\"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy\" crossorigin=\"anonymous\"></script>");
+  out.w("</tbody></table></div><script src=\"/estatico/js/clientes/remove.js\"></script><script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\" crossorigin=\"anonymous\"></script><script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js\" integrity=\"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy\" crossorigin=\"anonymous\"></script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "41");
+  await_reorderer_tag({}, out, __component, "42");
 
   out.w("</body></html>");
 }

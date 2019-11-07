@@ -21,9 +21,12 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "express": "^4.17.1",
+    "jquery": "^3.4.1",
     "marko": "^4.18.20",
     "method-override": "^3.0.0",
-    "mysql": "^2.17.1"
+    "mysql": "^2.17.1",
+    "popper.js": "^1.16.0",
+    "session": "^0.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"

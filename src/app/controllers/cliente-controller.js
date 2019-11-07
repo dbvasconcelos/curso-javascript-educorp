@@ -24,7 +24,13 @@ class ClienteController {
             res.marko(
                 require('../views/clientes/formulario.marko'),
                 {
-                    cliente: {}
+                    cliente: {
+                        cpfClie: '',
+                        nomeClie: '',
+                        emailClie: '',
+                        idClie: '',
+                        dataNiverClie: ''
+                    }
                 }
             )
         }
@@ -60,6 +66,15 @@ class ClienteController {
             const clienteDao = new ClienteDao(bd);
             clienteDao.atualiza(req.body)
                 .then(res.redirect('/clientes'))
+                .catch(erro => console.log(erro));
+        }
+    }
+
+    remove() {
+        return (req, res) => {
+            const clienteDao = new ClienteDao(bd);
+            clienteDao.removePorId(req.params.id)
+                .then(() => res.status(200).end())
                 .catch(erro => console.log(erro));
         }
     }
