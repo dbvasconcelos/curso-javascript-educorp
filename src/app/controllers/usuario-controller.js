@@ -1,24 +1,37 @@
 const UsuarioDao = require('../infra/usuario-dao');
+const ClienteController = require('./cliente-controller');
+
 const bd = require('../../config/database');
+const templates = require('../views/templates');
 
 class UsuarioController {
+    
+    static rotas() {
+        return {
+            acesso: '/acesso'
+        }
+    }
+    
+    constructor() {
+        this._dao = new UsuarioDao(bd);
+    }
+
     acesso() {
         return (req, res) => {
             res.marko(
-                require('../views/usuarios/acesso.marko')
+                templates.usuarios.acesso
             )
         }
     }
 
     autentica() {
         return (req, res) => {
-            const usuarioDao = new UsuarioDao(bd);
-            usuarioDao.autentica(req.body.usuario, req.body.senha)
+            this._dao.autentica(req.body.usuario, req.body.senha)
                 .then(autenticou => {
                     if (autenticou) {
-                        res.redirect('/clientes');
+                        res.redirect(ClienteController.rotas().lista);
                     } else {
-                        res.redirect('/');
+                        res.redirect(UsuarioController.rotas().acesso);
                     }
                 })
                 .catch(erro =>  console.log(erro));

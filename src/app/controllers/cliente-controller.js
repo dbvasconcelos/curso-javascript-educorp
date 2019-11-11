@@ -1,15 +1,29 @@
 const ClienteDao = require('../infra/cliente-dao');
+
 const bd = require('../../config/database');
+const templates = require('../views/templates')
 
 class ClienteController {
     
+    static rotas() {
+        return {
+            lista: '/clientes',
+            criacao: '/clientes/form',
+            edicao: '/clientes/form/:id',
+            remocao: '/clientes/:id'
+        }
+    }
+
+    constructor() {
+        this._dao = new ClienteDao(bd);
+    }
+
     lista() {
         return (req, res) => {
-            const clienteDao = new ClienteDao(bd);
-            clienteDao.lista()
+            this._dao.lista()
                 .then(clientes =>
                     res.marko(
-                        require('../views/clientes/lista.marko'),
+                        templates.clientes.lista,
                         {
                             clientes: clientes
                         }
@@ -22,7 +36,7 @@ class ClienteController {
     criacao() {
         return (req,res) => {
             res.marko(
-                require('../views/clientes/formulario.marko'),
+                templates.clientes.formulario,
                 {
                     cliente: {
                         cpfClie: '',
@@ -38,11 +52,10 @@ class ClienteController {
 
     edicao() {
         return (req,res) => {
-            const clienteDao = new ClienteDao(bd);
-            clienteDao.buscaPorId(req.params.id)
+            this._dao.buscaPorId(req.params.id)
                 .then(cliente => 
                     res.marko(
-                        require('../views/clientes/formulario.marko'),
+                        templates.clientes.formulario,
                         {
                             cliente: cliente[0]
                         }
@@ -54,26 +67,23 @@ class ClienteController {
 
     insere() {
         return (req, res) => {
-            const clienteDao = new ClienteDao(bd);
-            clienteDao.insere(req.body)
-                .then(res.redirect('/clientes'))
+            this._dao.insere(req.body)
+                .then(res.redirect(ClienteController.rotas().lista))
                 .catch(erro => console.log(erro));
         }
     }
 
     atualiza() {
         return (req, res) => {
-            const clienteDao = new ClienteDao(bd);
-            clienteDao.atualiza(req.body)
-                .then(res.redirect('/clientes'))
+            this._dao.atualiza(req.body)
+                .then(res.redirect(ClienteController.rotas().lista))
                 .catch(erro => console.log(erro));
         }
     }
 
     remove() {
         return (req, res) => {
-            const clienteDao = new ClienteDao(bd);
-            clienteDao.removePorId(req.params.id)
+            this._dao.removePorId(req.params.id)
                 .then(() => res.status(200).end())
                 .catch(erro => console.log(erro));
         }

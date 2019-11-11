@@ -1,4 +1,5 @@
 class UsuarioDao {
+    
     constructor(bd) {
         this._bd = bd;
     }

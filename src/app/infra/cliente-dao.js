@@ -1,4 +1,5 @@
 class ClienteDao {
+    
     constructor(bd) {
         this._bd = bd;
     }

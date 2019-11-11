@@ -23,10 +23,16 @@ app.use(methodOverride((req,res) => {
     }
 }));
 
-const rotasClientes = require('../app/routes/cliente-routes');
-rotasClientes(app);
+// CORS workaround
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'http://localhost');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
-const rotasUsuarios = require('../app/routes/usuarios-routes');
-rotasUsuarios(app);
+const rotas = require('../app/routes');
+rotas(app);
 
 module.exports = app;
