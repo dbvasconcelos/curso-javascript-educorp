@@ -1,7 +1,7 @@
 const ClienteDao = require('../infra/cliente-dao');
 
 const bd = require('../../config/database');
-const templates = require('../views/templates')
+const templates = require('../views/templates');
 
 class ClienteController {
     
