@@ -20,13 +20,19 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
+    "express-mysql-session": "^2.1.0",
+    "express-session": "^1.17.0",
     "jquery": "^3.4.1",
     "marko": "^4.18.20",
     "method-override": "^3.0.0",
     "mysql": "^2.17.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "popper.js": "^1.16.0",
-    "session": "^0.1.0"
+    "session": "^0.1.0",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"

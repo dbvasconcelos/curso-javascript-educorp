@@ -1,11 +1,24 @@
-const express = require('express');
-const app = express();
-
 require('marko/node-require').install();
 require('marko/express');
 
+const express = require('express');
+/*
+const session = require('express-session');
+const express_mysql_session = require('express-mysql-session');
+const MySQLStore = express_mysql_session(session);
+*/
+
+const app = express();
+
+/*
+var opcoes = {host: 'localhost', port:3306, user:'root', password:'', database:'turma5'};
+var sessionStore  = new MySQLStore(opcoes);
+*/
+
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+
+const templates = require('../app/views/templates');
 
 app.use('/estatico', express.static('src/app/public'));
 
@@ -31,6 +44,21 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
+
+const sessionAuth = require('./session-auth');
+sessionAuth(app);
+
+/*
+// configurando sessao de usuario
+app.use(session(
+    {
+        secret: 'odesempre',
+        saveUninitialized: true,
+        resave: true,
+        store: sessionStore
+    }
+));
+*/
 
 const rotas = require('../app/routes');
 rotas(app);

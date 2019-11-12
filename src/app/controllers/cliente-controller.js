@@ -20,6 +20,9 @@ class ClienteController {
 
     lista() {
         return (req, res) => {
+            /*if (!req.session.usuario) {
+                res.redirect('/acesso');
+            }*/
             this._dao.lista()
                 .then(clientes =>
                     res.marko(
