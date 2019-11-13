@@ -5,6 +5,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const UsuarioDao = require('../app/infra/usuario-dao');
 const bd = require('./database');
+const cript = require('./encryption');
 
 module.exports = (app) => {
     passport.use(new LocalStrategy(
@@ -12,11 +13,13 @@ module.exports = (app) => {
             usernameField: 'usuario',
             passwordField: 'senha'
         },
-        (usuario, senha, done) => {
+        (login, senha, done) => {
             const usuarioDao = new UsuarioDao(bd);
-            usuarioDao.buscaPorUsuario(usuario)
+            usuarioDao.buscaPorLogin(login)
                     .then(encontrado => {
-                        if (!encontrado || senha != encontrado.senhaUsr) {
+                        let senhaDecript = cript.decriptografa(encontrado.senhaUsr);
+                        console.log(senhaDecript);
+                        if (!encontrado || senha != senhaDecript) {
                             return done(null, false, {
                                 mensagem: 'Login e senha incorretos!'
                             });
@@ -41,7 +44,7 @@ module.exports = (app) => {
     });
 
     app.use(sessao({
-        secret: 'curso-nodejs-educorp',
+        secret: 'curso-javascript-educorp',
         genid: function(req) {
             return uuid();
         },
@@ -52,7 +55,7 @@ module.exports = (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.use((req, res, next) => {
+    app.use((req, resp, next) => {
         req.passport = passport;
         next();
     });

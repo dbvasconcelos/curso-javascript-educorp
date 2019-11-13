@@ -1,12 +1,14 @@
 const mysql = require('mysql');
 
 const host = 'localhost';
-const usuario = 'root';
-const senha = '';
+const usuario = 'admin';
+const porta = 3306;
+const senha = 'admin';
 const schema = 'turma5';
 
 const db = mysql.createConnection({
     host: host,
+    port: porta,
     user: usuario,
     password: senha,
     database: schema
@@ -14,7 +16,7 @@ const db = mysql.createConnection({
 
 db.connect((erro) => {
     if (erro) {
-        console.log('Erro conectando ao banco de dados');
+        console.log('Erro conectando ao banco de dados: ' + erro);
     } else {
         console.log('MySQL conectado')
     }

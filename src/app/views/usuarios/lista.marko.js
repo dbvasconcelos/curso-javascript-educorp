@@ -2,7 +2,7 @@
 "use strict";
 
 var marko_template = module.exports = require("marko/src/html").t(__filename),
-    marko_componentType = "/br.unicamp.educorp.cursojs$1.0.0/src/app/views/clientes/lista.marko",
+    marko_componentType = "/br.unicamp.educorp.cursojs$1.0.0/src/app/views/usuarios/lista.marko",
     components_helpers = require("marko/src/runtime/components/helpers"),
     marko_renderer = components_helpers.r,
     marko_defineComponent = components_helpers.c,
@@ -18,32 +18,28 @@ function render(input, out, __component, component, state) {
 
   marko_dynamicTag(out, Layout, function() {
     return {
-        titulo: "Clientes",
+        titulo: "Usuários",
         conteudo: {
             renderBody: function(out) {
-              out.w("<div class=\"container\"><h1>Clientes</h1><a class=\"btn btn-info btn-sm stretched-link float-right mb-1\" href=\"/clientes/form\">NOVO</a><table class=\"table table-striped table-bordered\" id=\"clientes\"><thead class=\"thead-light\"><tr><th>CÓDIGO</th><th>CPF</th><th>NOME</th><th>DATA ANIVERSÁRIO</th><th>EMAIL</th><th></th><th></th></tr></thead><tbody>");
+              out.w("<div class=\"container\"><h1>Usuários</h1><a class=\"btn btn-info btn-sm stretched-link float-right mb-1\" href=\"/usuarios/form\">NOVO</a><table class=\"table table-striped table-bordered\" id=\"usuarios\"><thead class=\"thead-light\"><tr><th>CÓDIGO</th><th>NOME</th><th>LOGIN</th><th></th><th></th></tr></thead><tbody>");
 
               var $for$0 = 0;
 
-              marko_forEach(data.clientes, function(cliente) {
+              marko_forEach(data.usuarios, function(usuario) {
                 var $keyScope$0 = "[" + (($for$0++) + "]");
 
                 out.w("<tr" +
-                  marko_attr("id", "cliente_" + cliente.idClie) +
+                  marko_attr("id", "usuario_" + usuario.idUsr) +
                   "><td class=\"align-middle\">" +
-                  marko_escapeXml(cliente.idClie) +
+                  marko_escapeXml(usuario.idUsr) +
                   "</td><td class=\"align-middle\">" +
-                  marko_escapeXml(cliente.cpfClie) +
+                  marko_escapeXml(usuario.nomeUsr) +
                   "</td><td class=\"align-middle\">" +
-                  marko_escapeXml(cliente.nomeClie) +
-                  "</td><td class=\"align-middle\">" +
-                  marko_escapeXml(cliente.dataNiverClie) +
-                  "</td><td class=\"align-middle\">" +
-                  marko_escapeXml(cliente.emailClie) +
+                  marko_escapeXml(usuario.loginUsr) +
                   "</td><td class=\"align-middle\"><a class=\"btn btn-secondary btn-sm stretched-link\"" +
-                  marko_attr("href", "/clientes/form/" + cliente.idClie) +
+                  marko_attr("href", "/usuarios/form/" + usuario.idUsr) +
                   ">EDITAR</a></td><td class=\"align-middle\"><a class=\"btn btn-danger btn-sm stretched-link\" href=\"#\"" +
-                  marko_attr("data-ref", "" + cliente.idClie) +
+                  marko_attr("data-ref", "" + usuario.idUsr) +
                   " data-type=\"remocao\">REMOVER</a></td></tr>");
               });
 
@@ -52,7 +48,7 @@ function render(input, out, __component, component, state) {
           },
         script: {
             renderBody: function(out) {
-              out.w("<script src=\"/estatico/js/clientes/remove.js\"></script>");
+              out.w("<script src=\"/estatico/js/usuarios/remove.js\"></script>");
             }
           }
       };
@@ -67,7 +63,7 @@ marko_template._ = marko_renderer(render, {
 marko_template.Component = marko_defineComponent({}, marko_template._);
 
 marko_template.meta = {
-    id: "/br.unicamp.educorp.cursojs$1.0.0/src/app/views/clientes/lista.marko",
+    id: "/br.unicamp.educorp.cursojs$1.0.0/src/app/views/usuarios/lista.marko",
     tags: [
       "../layout.marko"
     ]

@@ -3,10 +3,13 @@ const ClienteDao = require('../infra/cliente-dao');
 const bd = require('../../config/database');
 const templates = require('../views/templates');
 
+const { validationResult } = require('express-validator');
+
 class ClienteController {
     
     static rotas() {
         return {
+            autenticadas: '/clientes*',
             lista: '/clientes',
             criacao: '/clientes/form',
             edicao: '/clientes/form/:id',
@@ -19,13 +22,10 @@ class ClienteController {
     }
 
     lista() {
-        return (req, res) => {
-            /*if (!req.session.usuario) {
-                res.redirect('/acesso');
-            }*/
+        return (req, resp) => {
             this._dao.lista()
                 .then(clientes =>
-                    res.marko(
+                    resp.marko(
                         templates.clientes.lista,
                         {
                             clientes: clientes
@@ -37,11 +37,11 @@ class ClienteController {
     }
 
     criacao() {
-        return (req,res) => {
-            res.marko(
+        return (req, resp) => {
+            resp.marko(
                 templates.clientes.formulario,
                 {
-                    cliente: {
+                    cliente: { 
                         cpfClie: '',
                         nomeClie: '',
                         emailClie: '',
@@ -54,10 +54,10 @@ class ClienteController {
     }
 
     edicao() {
-        return (req,res) => {
+        return (req, resp) => {
             this._dao.buscaPorId(req.params.id)
                 .then(cliente => 
-                    res.marko(
+                    resp.marko(
                         templates.clientes.formulario,
                         {
                             cliente: cliente[0]
@@ -69,28 +69,62 @@ class ClienteController {
     }
 
     insere() {
-        return (req, res) => {
+        return (req, resp) => {
+            const erros = validationResult(req);
+            if (!erros.isEmpty()) {
+                return resp.marko(
+                    templates.clientes.formulario,
+                    { 
+                        cliente: { 
+                            cpfClie: req.body.cpf,
+                            nomeClie: req.body.nome,
+                            emailClie: req.body.email,
+                            idClie: req.body.id,
+                            dataNiverClie: req.body.aniversario
+                        }, 
+                        cliente: req.body, 
+                        errosValidacao: erros.array()
+                    }
+                );
+            }
             this._dao.insere(req.body)
-                .then(res.redirect(ClienteController.rotas().lista))
+                .then(resp.redirect(ClienteController.rotas().lista))
                 .catch(erro => console.log(erro));
         }
     }
 
     atualiza() {
-        return (req, res) => {
+        return (req, resp) => {
+            const erros = validationResult(req);
+            if (!erros.isEmpty()) {
+                return resp.status(422).marko(
+                    templates.clientes.formulario,
+                    { 
+                        cliente: { 
+                            cpfClie: req.body.cpf,
+                            nomeClie: req.body.nome,
+                            emailClie: req.body.email,
+                            idClie: req.body.id,
+                            dataNiverClie: req.body.aniversario
+                        }, 
+                        errosValidacao: erros.array()
+                    }
+                );
+            }
             this._dao.atualiza(req.body)
-                .then(res.redirect(ClienteController.rotas().lista))
+                .then(resp.redirect(ClienteController.rotas().lista))
                 .catch(erro => console.log(erro));
         }
     }
 
     remove() {
-        return (req, res) => {
+        return (req, resp) => {
             this._dao.removePorId(req.params.id)
-                .then(() => res.status(200).end())
+                .then(() => resp.status(200).end())
                 .catch(erro => console.log(erro));
         }
     }
+
 }
 
 module.exports = ClienteController;

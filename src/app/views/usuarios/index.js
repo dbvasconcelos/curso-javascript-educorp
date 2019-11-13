@@ -1,3 +1,4 @@
 module.exports = {
-    acesso: require('./acesso.marko')
+    lista: require('./lista.marko'),
+    formulario: require('./form.marko')
 }

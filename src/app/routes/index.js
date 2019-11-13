@@ -1,6 +1,9 @@
+const rotasBase = require('./base-routes');
+const rotasUsuario = require('./usuario-routes');
+const rotasCliente = require('./cliente-routes');
+
 module.exports = (app) => {
-    const rotasUsuario = require('./usuario-routes');
+    rotasBase(app);
 	rotasUsuario(app);
-    const rotasCliente = require('./cliente-routes');
     rotasCliente(app);
 }

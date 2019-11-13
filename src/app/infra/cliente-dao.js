@@ -38,7 +38,7 @@ class ClienteDao {
     insere(cliente) {
         return new Promise((resolve, reject) => {
             this._bd.query(
-                `INSERT INTO clientes (cpfClie, emailClie, nomeClie, dataNiverClie) VALUES (?, ?, ?, ?) `, 
+                `INSERT INTO CLIENTES (cpfClie, emailClie, nomeClie, dataNiverClie) VALUES (?, ?, ?, ?) `, 
                 [cliente.cpf, cliente.email, cliente.nome, cliente.aniversario],
                 (erro, clientes) => {
                     if (erro) {
@@ -54,7 +54,7 @@ class ClienteDao {
     atualiza(cliente) {
         return new Promise((resolve, reject) => {
             this._bd.query(
-                `UPDATE clientes SET cpfClie = ?, emailClie = ?, nomeClie = ?, dataNiverClie = ? WHERE idClie = ?`, 
+                `UPDATE CLIENTES SET cpfClie = ?, emailClie = ?, nomeClie = ?, dataNiverClie = ? WHERE idClie = ?`, 
                 [cliente.cpf, cliente.email, cliente.nome, cliente.aniversario, cliente.id],
                 (erro, clientes) => {
                     if (erro) {
@@ -70,7 +70,7 @@ class ClienteDao {
     removePorId(id) {
         return new Promise((resolve, reject) => {
             this._bd.query(
-                `DELETE FROM clientes WHERE idClie = ?`,
+                `DELETE FROM CLIENTES WHERE idClie = ?`,
                 [id],
                 (erro) => {
                     if (erro) {

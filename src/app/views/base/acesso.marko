@@ -1,0 +1,24 @@
+import Layout from "../layout.marko"
+<${Layout} titulo="Entrar">
+    <@conteudo>
+        <div class="container-fluid text-center">
+            <form method="POST" action="/acesso" enctype="application/x-www-form-urlencoded" class="form-signin">
+                <img class="mb-4" src="/estatico/img/logo-js.png" alt="" width="214" height="236">
+                <h1 class="h3 mb-3 font-weight-normal">Entrar na Aplicação</h1>
+                <if (data.erro)>
+                    <div class="alert alert-danger">
+                        ${data.erro}
+                    </div>
+                </if> 
+                <label class="sr-only" for="usuario">USUÁRIO</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="usuário" />
+                <label class="sr-only" for="senha">SENHA</label>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="senha" />
+                <button class="btn btn-lg btn-primary btn-block mt-1" type="submit">Entrar</button>
+            </form>
+        </div>
+    </@conteudo>
+    <@css>
+        <link rel="stylesheet" href="/estatico/css/signin.css" />
+    </@css>
+</>

@@ -1,0 +1,34 @@
+import Layout from "../layout.marko"
+<${Layout} titulo="Formulário de Usuários">
+    <@conteudo>
+        <div class="container">
+            <h1>Formulário de Usuários</h1>
+            <if (data.errosValidacao)>
+                <for|erro| of=data.errosValidacao>
+                    <div class="alert alert-danger">
+                        ${erro.param}: ${erro.msg}
+                    </div>
+                </for>
+            </if>
+            <form method="POST" action="/usuarios" enctype="application/x-www-form-urlencoded">
+                <if (data.usuario.idUsr)>
+                    <input type="hidden" name="_method" value="PUT" />
+                    <input type="hidden" id="id" name="id" value=`${data.usuario.idUsr}` />
+                </if>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control form-control-sm" id="nome" name="nome" value=`${data.usuario.nomeUsr}` />
+                </div>
+                <div class="form-group">
+                    <label for="login">Login</label>
+                    <input type="text" class="form-control form-control-sm" id="login" name="login" value=`${data.usuario.loginUsr}` />
+                </div>
+                <div class="form-group">
+                    <label for="nome">Senha</label>
+                    <input type="password" class="form-control form-control-sm" id="senha" name="senha" value=`${data.usuario.senhaUsr}` />
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </@conteudo>
+</>
