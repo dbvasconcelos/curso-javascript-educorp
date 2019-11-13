@@ -18,7 +18,6 @@ module.exports = (app) => {
             usuarioDao.buscaPorLogin(login)
                     .then(encontrado => {
                         let senhaDecript = cript.decriptografa(encontrado.senhaUsr);
-                        console.log(senhaDecript);
                         if (!encontrado || senha != senhaDecript) {
                             return done(null, false, {
                                 mensagem: 'Login e senha incorretos!'
