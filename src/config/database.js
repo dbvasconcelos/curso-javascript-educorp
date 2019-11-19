@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 
 const host = 'localhost';
-const usuario = 'admin';
+const usuario = 'root';
 const porta = 3306;
-const senha = 'admin';
+const senha = '';
 const schema = 'turma5';
 
 const db = mysql.createConnection({

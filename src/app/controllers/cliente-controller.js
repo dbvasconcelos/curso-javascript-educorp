@@ -5,6 +5,8 @@ const templates = require('../views/templates');
 
 const { validationResult } = require('express-validator');
 
+const DataHelper = require('../helpers/data-helper');
+
 class ClienteController {
     
     static rotas() {
@@ -80,9 +82,8 @@ class ClienteController {
                             nomeClie: req.body.nome,
                             emailClie: req.body.email,
                             idClie: req.body.id,
-                            dataNiverClie: req.body.aniversario
+                            dataNiverClie: DataHelper.dataParaTexto(req.body.aniversario)
                         }, 
-                        cliente: req.body, 
                         errosValidacao: erros.array()
                     }
                 );
@@ -105,7 +106,7 @@ class ClienteController {
                             nomeClie: req.body.nome,
                             emailClie: req.body.email,
                             idClie: req.body.id,
-                            dataNiverClie: req.body.aniversario
+                            dataNiverClie: DataHelper.dataParaTexto(req.body.aniversario)
                         }, 
                         errosValidacao: erros.array()
                     }
