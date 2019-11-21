@@ -17,19 +17,19 @@ import Layout from "../layout.marko"
                 </if>
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control form-control-sm" id="cpf" name="cpf" size="11" value=`${data.cliente.cpfClie}` />
+                    <input type="text" class="form-control form-control-sm" id="cpf" name="cpf" size="11" value=`${data.cliente.cpfClie}` placeholder="cpf" />
                 </div>
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control form-control-sm" id="nome" name="nome" size="40" value=`${data.cliente.nomeClie}` />
+                    <input type="text" class="form-control form-control-sm" id="nome" name="nome" size="40" value=`${data.cliente.nomeClie}` placeholder="nome" />
                 </div>
                 <div class="form-group">
                     <label for="aniversario">Aniversário</label>
-                    <input type="text" class="form-control form-control-sm" id="aniversario" name="aniversario" size="10" value=`${data.cliente.dataNiverClie}` />
+                    <input type="date" class="form-control form-control-sm" id="aniversario" name="aniversario" size="10" value=`${data.cliente.dataNiverClie}` />
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control form-control-sm" id="email" name="email" value=`${data.cliente.emailClie}` />
+                    <input type="email" class="form-control form-control-sm" id="email" name="email" value=`${data.cliente.emailClie}` placeholder="email" />
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>

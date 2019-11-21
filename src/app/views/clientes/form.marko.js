@@ -47,13 +47,13 @@ function render(input, out, __component, component, state) {
 
               out.w("<div class=\"form-group\"><label for=\"cpf\">CPF</label><input type=\"text\" class=\"form-control form-control-sm\" id=\"cpf\" name=\"cpf\" size=\"11\"" +
                 marko_attr("value", "" + data.cliente.cpfClie) +
-                "></div><div class=\"form-group\"><label for=\"nome\">Nome</label><input type=\"text\" class=\"form-control form-control-sm\" id=\"nome\" name=\"nome\" size=\"40\"" +
+                " placeholder=\"cpf\"></div><div class=\"form-group\"><label for=\"nome\">Nome</label><input type=\"text\" class=\"form-control form-control-sm\" id=\"nome\" name=\"nome\" size=\"40\"" +
                 marko_attr("value", "" + data.cliente.nomeClie) +
-                "></div><div class=\"form-group\"><label for=\"aniversario\">Aniversário</label><input type=\"text\" class=\"form-control form-control-sm\" id=\"aniversario\" name=\"aniversario\" size=\"10\"" +
+                " placeholder=\"nome\"></div><div class=\"form-group\"><label for=\"aniversario\">Aniversário</label><input type=\"date\" class=\"form-control form-control-sm\" id=\"aniversario\" name=\"aniversario\" size=\"10\"" +
                 marko_attr("value", "" + data.cliente.dataNiverClie) +
                 "></div><div class=\"form-group\"><label for=\"email\">Email</label><input type=\"email\" class=\"form-control form-control-sm\" id=\"email\" name=\"email\"" +
                 marko_attr("value", "" + data.cliente.emailClie) +
-                "></div><button type=\"submit\" class=\"btn btn-primary\">Salvar</button></form></div>");
+                " placeholder=\"email\"></div><button type=\"submit\" class=\"btn btn-primary\">Salvar</button></form></div>");
             }
           }
       };
