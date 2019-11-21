@@ -2,19 +2,14 @@ const ClienteController = require('../controllers/cliente-controller');
 const clienteController = new ClienteController();
 
 const BaseController = require('../controllers/base-controller');
+const baseController = new BaseController();
 
 const Cliente = require('../models/cliente');
 
 module.exports = (app) => {
 	const rotasCliente = ClienteController.rotas();
 
-	app.use(rotasCliente.autenticadas, (req, resp, next) => {
-		if (req.isAuthenticated()) {
-			next();
-		} else {
-			resp.redirect(BaseController.rotas().acesso);
-		}
-	});
+	app.use(rotasCliente.autenticadas, baseController.autoriza());
 
 	app.get(rotasCliente.lista, clienteController.lista());
 	app.get(rotasCliente.criacao, clienteController.criacao());

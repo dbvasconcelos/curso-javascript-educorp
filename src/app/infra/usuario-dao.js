@@ -82,21 +82,6 @@ class UsuarioDao {
         });
     }
 
-    autentica(usuario, senha) {
-        return new Promise((resolve, reject) => {
-            this._bd.query(
-                `SELECT * FROM USUARIOS WHERE loginUsr = ? AND senhaUsr = ?`,
-                [usuario, senha],
-                (erro, usuario) => {
-                    if (erro) {
-                        return reject('Não foi possível fazer login!');
-                    }
-                    return resolve(usuario.length > 0);
-                }
-            );
-        });
-    }
-
     buscaPorLogin(login) {
         return new Promise((resolve, reject) => {
             this._bd.query(

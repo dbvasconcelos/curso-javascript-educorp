@@ -63,6 +63,16 @@ class BaseController {
             }) (req, resp, next);
         }
     }
+
+    autoriza() {
+        return (req, resp, next) => {
+            if (req.isAuthenticated()) {
+                next();
+            } else {
+                resp.redirect(BaseController.rotas().acesso);
+            }
+        }
+    }
 }
 
 module.exports = BaseController;

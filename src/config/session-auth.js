@@ -43,9 +43,7 @@ module.exports = (app) => {
 
     app.use(sessao({
         secret: 'curso-javascript-educorp',
-        genid: function(req) {
-            return uuid();
-        },
+        genid: req => uuid(),
         resave: false,
         saveUninitialized: false
     }));

@@ -2,19 +2,14 @@ const UsuarioController = require('../controllers/usuario-controller');
 const usuarioController = new UsuarioController();
 
 const BaseController = require('../controllers/base-controller');
+const baseController = new BaseController();
 
 const Usuario = require('../models/usuario');
 
 module.exports = (app) => {
 	const rotasUsuario = UsuarioController.rotas();
 
-	app.use(rotasUsuario.autenticadas, (req, resp, next) => {
-		if (req.isAuthenticated()) {
-			next();
-		} else {
-			resp.redirect(BaseController.rotas().acesso);
-		}
-	});
+	app.use(rotasUsuario.autenticadas, baseController.autoriza());
 
 	app.get(rotasUsuario.lista, usuarioController.lista());
 	app.get(rotasUsuario.criacao, usuarioController.criacao());
