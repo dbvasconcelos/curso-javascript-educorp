@@ -1,0 +1,44 @@
+[
+{ 
+  "idClie" : 1,
+  "cpfClie" : "1111111111",
+  "nomeClie" : "Marcia Correa",
+  "dataNiverClie" : "12/12/1978",
+  "emailClie" : "marciac@unicamp.br"
+},
+{ 
+    "idClie" : 2,
+    "cpfClie" : "1235478451",
+    "nomeClie" : "Anderson Nascimento",
+    "dataNiverClie" : "20/08/1978",
+    "emailClie" : "nascimento@gmail.br"
+},
+{ 
+    "idClie" : 3,
+    "cpfClie" : "9999999999",
+    "nomeClie" : "Lia Santos",
+    "dataNiverClie" : "01/01/1980",
+    "emailClie" : "lia@bol.br"
+  },
+{ 
+    "idClie" : 4,
+    "cpfClie" : "2121212121",
+    "nomeClie" : "Monica Alves",
+    "dataNiverClie" : "27/08/1973",
+    "emailClie" : "monicaalvs@unicamp.br"
+  },
+{ 
+    "idClie" : 5,
+    "cpfClie" : "7878787878",
+    "nomeClie" : "Elieser Silva",
+    "dataNiverClie" : "30/04/1980",
+    "emailClie" : "esilva@unicamp.br"
+  },
+{ 
+    "idClie" : 6,
+    "cpfClie" : "996633112",
+    "nomeClie" : "Bruna Vedovoto",
+    "dataNiverClie" : "03/02/1978",
+    "emailClie" : "vedovoto@cotuca.br"
+  }
+]
