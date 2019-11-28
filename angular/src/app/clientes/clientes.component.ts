@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-clientes',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesComponent implements OnInit {
 
-  constructor() { }
+  result : any;
+  caminhoJson = '/assets/clientes.json';
 
+  constructor(private http: HttpClient) { }
+    
   ngOnInit() {
+    this.http.get<any>(this.caminhoJson).subscribe(response =>
+      {
+         this.result = response;
+      });
   }
 
 }

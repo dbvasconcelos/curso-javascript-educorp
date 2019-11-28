@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { ObjectUnsubscribedError } from 'rxjs/internal/util/ObjectUnsubscribedError';
+import { AcessoService } from '../acesso/acesso.service';
 
 @Component({
   selector: 'app-produtos',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutosComponent implements OnInit {
 
-  constructor() { }
+  result: any;
+  caminhoJson = '/assets/produtos.json';
+
+  constructor(private http:HttpClient) { }
 
   ngOnInit() {
+     this.http.get<any>(this.caminhoJson).subscribe(response =>
+      {
+        this.result = response;
+      });
   }
 
 }

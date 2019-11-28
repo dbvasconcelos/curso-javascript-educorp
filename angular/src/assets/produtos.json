@@ -1,0 +1,38 @@
+[
+    { 
+      "idProd" : 9,
+      "descProd" : "Ventilador de Teto",
+      "descTedProd" : "Ventilador 110V - portátil potente",
+      "valorProd" : 98.78
+    },
+    { 
+        "idProd" : 10,
+        "descProd" : "Liquidificador",
+        "descTedProd" : "Liquidificador 220V - 7L",
+        "valorProd" : 59.99
+      },
+    { 
+        "idProd" : 11,
+        "descProd" : "Refrigerador",
+        "descTedProd" : "FrostFree - Bivolt - 40L",
+        "valorProd" : 98.78
+        },
+    { 
+        "idProd" : 12,
+        "descProd" : "Caderno Univ Esp",
+        "descTedProd" : "Cad 200 fs A4 - Esp",
+        "valorProd" : 27.45
+        },
+    { 
+        "idProd" : 13,
+        "descProd" : "Lapiseira",
+        "descTedProd" : "Lap - Graf 1,5 Des",
+        "valorProd" : 98.78
+        },
+    { 
+        "idProd" : 14,
+        "descProd" : "Tablet",
+        "descTedProd" : "Sony Xperia Z2 Tablet IOS MAC",
+        "valorProd" : 99.99
+        }
+    ]

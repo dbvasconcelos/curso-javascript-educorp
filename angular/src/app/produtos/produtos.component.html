@@ -1,3 +1,38 @@
-<p>
-  produtos works!
-</p>
+<div id="#frmContainer">
+  <table class="table">
+          <thead>
+            <tr>
+               <th scope="col">ID</th>
+               <th scope="col">DESCRICAO</th>
+               <th scope="col">DESC TEC</th>
+               <th scope="col">PREÇO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <th scope="row">{{ result[0].idProd    | json }}</th>
+                <td>{{ result[0].descProd   | json }}</td>
+                <td>{{ result[0].descTedProd| json }}</td>
+                <td>{{ result[0].valorProd  | json }}</td>
+            </tr>
+            <tr>
+                <th scope="row">{{ result[1].idProd    | json }}</th>
+                <td>{{ result[1].descProd   | json }}</td>
+                <td>{{ result[1].descTedProd| json }}</td>
+                <td>{{ result[1].valorProd  | json }}</td>
+            </tr>
+            <tr>
+                <th scope="row">{{ result[2].idProd    | json }}</th>
+                <td>{{ result[2].descProd   | json }}</td>
+                <td>{{ result[2].descTedProd| json }}</td>
+                <td>{{ result[2].valorProd  | json }}</td>
+             </tr>
+             <tr>
+                  <th scope="row">{{ result[3].idProd    | json }}</th>
+                  <td>{{ result[3].descProd   | json }}</td>
+                  <td>{{ result[3].descTedProd| json }}</td>
+                  <td>{{ result[3].valorProd  | json }}</td>
+              </tr>
+          </tbody>
+  </table>
+  </div>
