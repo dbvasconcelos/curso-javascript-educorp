@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AcessoService } from './acesso.service';
 import { Observable } from 'rxjs/internal/Observable';
-import {FormGroup, FormBuilder, ReactiveFormsModule, FormControl} from '@angular/forms';
+import {FormGroup, FormBuilder, ReactiveFormsModule, FormControl, Validators} from '@angular/forms';
 import { ObjectUnsubscribedError } from 'rxjs/internal/util/ObjectUnsubscribedError';
 
 @Component({
@@ -23,16 +23,22 @@ export class AcessoComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      usuario: [],
-      senha: []
+      usuario: [
+        '', 
+        Validators.required
+      ],
+      senha: [
+        '',
+        Validators.required
+      ]
     });
   }
 
   acesso() {
-    const login = this.loginForm.get('usuario').value();
-    const senha = this.loginForm.get('senha').value();
+    const login = this.loginForm.get('usuario').value;
+    const senha = this.loginForm.get('senha').value;
 
-    this.acessoService.autenticacaoAcesso(login,senha).subscribe(dados=>{
+    this.acessoService.autenticacaoAcesso(login, senha).subscribe(dados=>{
       if (dados == 1) {
         alert('usuario autenticado');
       } else {

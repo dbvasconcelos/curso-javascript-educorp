@@ -16,6 +16,7 @@ class UsuarioController {
             criacao: '/usuarios/form',
             edicao: '/usuarios/form/:id',
             remocao: '/usuarios/:id',
+			api: '/api/usuarios'
         }
     }
     
@@ -37,6 +38,16 @@ class UsuarioController {
                 .catch(erro => console.log(erro));
         }
     }
+
+	listaApi() {
+		return (req, resp) => {
+            this._dao.lista()
+                .then(usuarios =>
+                    resp.json(usuarios)
+                )
+                .catch(erro => console.log(erro));
+        }
+	}
 
     criacao() {
         return (req, resp) => {

@@ -12,6 +12,7 @@ module.exports = (app) => {
 	app.use(rotasUsuario.autenticadas, baseController.autoriza());
 
 	app.get(rotasUsuario.lista, usuarioController.lista());
+	app.get(rotasUsuario.api, usuarioController.listaApi());
 	app.get(rotasUsuario.criacao, usuarioController.criacao());
 	app.get(rotasUsuario.edicao, usuarioController.edicao());
 

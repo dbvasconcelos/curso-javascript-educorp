@@ -9,4 +9,5 @@ module.exports = (app) => {
     app.get(rotasBase.home, baseController.home());
     
     app.post(rotasBase.acesso, baseController.autentica());
+	app.post(rotasBase.api, baseController.autenticaApi());
 }

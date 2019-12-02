@@ -1,4 +1,7 @@
 const templates = require('../views/templates');
+const UsuarioDao = require('../infra/usuario-dao');
+const bd = require('../../config/database');
+const cript = require('../../config/encryption');
 
 class BaseController {
 
@@ -6,7 +9,8 @@ class BaseController {
         return {
             home: '/',
             acesso: '/acesso',
-            sair: '/logout'
+            sair: '/logout',
+			api: '/api'
         };
     }
 
@@ -63,6 +67,24 @@ class BaseController {
             }) (req, resp, next);
         }
     }
+
+	autenticaApi() {
+		return (req, resp) => {
+			const usuario = req.body.usuario;
+            const senha = req.body.senha;
+			console.log(req.body);
+            const usuarioDao = new UsuarioDao(bd);
+            usuarioDao.buscaPorLogin(usuario)
+                    .then(encontrado => {
+                        if (!encontrado || senha != cript.decriptografa(encontrado.senhaUsr)) {
+                            resp.json(0);
+                        } else {
+							resp.json(1);
+						}
+                    })
+                    .catch(erro => resp.json(0));
+		}
+	}
 
     autoriza() {
         return (req, resp, next) => {

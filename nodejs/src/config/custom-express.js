@@ -12,6 +12,14 @@ const templates = require('../app/views/templates');
 
 app.use('/estatico', express.static('src/app/public'));
 
+// CORS workaround
+app.use((req, resp, next) => {
+    resp.header('Access-Control-Allow-Origin', '*');
+    resp.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    resp.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 // Allow JSON body parsing
 app.use(bodyParser.urlencoded({
     extended: true
@@ -25,15 +33,6 @@ app.use(methodOverride((req, resp) => {
         return method;
     }
 }));
-
-// CORS workaround
-app.use((req, resp, next) => {
-    resp.header('Access-Control-Allow-Origin', '*');
-    resp.header('Access-Control-Allow-Origin', 'http://localhost');
-    resp.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    resp.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
 
 // Session Authentication and Authorization
 const sessionAuth = require('./session-auth');
