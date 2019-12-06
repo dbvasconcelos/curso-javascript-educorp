@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Minhas Reservas</h1>
+    
+    <a [routerLink]="['/reservas/form']" class="btn btn-labeled btn-info btn-sm mb-2">
+        <i class="fa fa-plus-square pr-2" aria-hidden="true"></i>
+        NOVA
+    </a>
+    
+    <div class="container">
+        <div *ngFor="let reserva of reservas" class="row row-striped">
+            <div class="col-2 text-right">
+                    <h1 class="display-4"><span class="badge badge-secondary">{{ this.dataService.numeroDia(reserva.data) }}</span></h1>
+                    <h2>{{ this.dataService.nomeMes(reserva.data) }}/{{ this.dataService.terminacaoAno(reserva.data) }}</h2>
+            </div>
+            <div class="col-10">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ this.dataService.nomeDia(reserva.data) }}</li>
+                    <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ reserva.inicio }} - {{ reserva.fim }}</li>
+                    <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ reserva.laboratorio.nome }}</li>
+                </ul>
+                <p class="text-justify">{{ reserva.razao }}</p>
+                <a
+                    (click)="cancelaReserva(reserva)" 
+                    href="javascript:void(0)" 
+                    class="text-danger">
+                    <i class="fa fa-ban pr-2" aria-hidden="true"></i>
+                    Cancelar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

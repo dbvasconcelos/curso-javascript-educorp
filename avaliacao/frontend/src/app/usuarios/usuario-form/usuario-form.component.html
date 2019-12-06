@@ -1,0 +1,51 @@
+<div class="container">
+    <h1>Cadastro de Usuários</h1>
+    <form [formGroup]="usuarioForm" (submit)="insereUsuario()">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input
+                id="email"
+                formControlName="email" 
+                type="text" 
+                class="form-control form-control-sm"  
+                placeholder="Email" 
+                autofocus 
+            />
+            <app-validation-message *ngIf="usuarioForm.get('email').errors?.required" text="Email obrigatório."></app-validation-message>
+            <app-validation-message *ngIf="usuarioForm.get('email').errors?.email" text="Email inválido."></app-validation-message>
+            <app-validation-message *ngIf="usuarioForm.get('email').errors?.emailCadastrado" text="Email já cadastrado."></app-validation-message>
+        </div>
+        <div class="form-group">
+                <label for="nome">Nome</label>
+                <input
+                    id="nome"
+                    formControlName="nome" 
+                    type="text" 
+                    class="form-control form-control-sm"  
+                    placeholder="Nome" 
+                />
+                <app-validation-message *ngIf="usuarioForm.get('nome').errors?.required" text="Nome obrigatório."></app-validation-message>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha</label>
+            <input 
+            id="senha"
+            formControlName="senha" 
+            type="password" 
+            class="form-control form-control-sm" 
+            placeholder="Senha" 
+            />
+            <app-validation-message *ngIf="usuarioForm.get('senha').errors?.required" text="Senha obrigatória."></app-validation-message>
+        </div>
+        <div class="form-check">
+            <input 
+                id="administrador"
+                formControlName="administrador"
+                type="checkbox" 
+                class="form-check-input"
+            >
+            <label class="form-check-label" for="administrador">Administrador</label>
+        </div>
+        <button [disabled]="usuarioForm.invalid || usuarioForm.pending" class="btn btn-sm btn-dark mt-3" type="submit">Salvar</button>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Cadastro de Laboratórios</h1>
+    <form [formGroup]="laboratorioForm" (submit)="insereLaboratorio()">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input
+                id="nome"
+                formControlName="nome" 
+                type="text" 
+                class="form-control form-control-sm"  
+                placeholder="Nome" 
+                autofocus 
+            />
+            <app-validation-message *ngIf="laboratorioForm.get('nome').errors?.required" text="Nome obrigatório."></app-validation-message>
+        </div>
+        <button [disabled]="laboratorioForm.invalid" class="btn btn-sm btn-dark mt-3" type="submit">Salvar</button>
+    </form>
+</div>

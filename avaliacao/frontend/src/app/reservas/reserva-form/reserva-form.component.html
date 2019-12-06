@@ -1,0 +1,57 @@
+<div class="container">
+    <h1>Nova Reserva</h1>
+    <form [formGroup]="reservaForm" (submit)="insereReserva()">
+        <div class="form-group">
+            <label for="laboratorio">Laboratório</label>
+            <select
+                id="laboratorio"
+                formControlName="laboratorio" 
+                class="form-control form-control-sm">
+                <option *ngFor="let laboratorio of laboratorios" value="{{ laboratorio.id }}">{{ laboratorio.nome }}</option>
+            </select>
+            <app-validation-message *ngIf="reservaForm.get('laboratorio').errors?.required" text="Laboratório obrigatório."></app-validation-message>
+        </div>
+        <div class="form-group">
+            <label for="data">Data</label>
+            <input
+                id="data"
+                formControlName="data" 
+                type="date" 
+                class="form-control form-control-sm"  
+            />
+            <app-validation-message *ngIf="reservaForm.get('data').errors?.required" text="Data obrigatória."></app-validation-message>
+            <app-validation-message *ngIf="reservaForm.get('data').errors?.dataFutura" text="Data não pode ser no passado."></app-validation-message>
+        </div>
+        <div class="form-group">
+            <label for="inicio">Inicio</label>
+            <input
+                id="inicio"
+                formControlName="inicio" 
+                type="time" 
+                class="form-control form-control-sm"
+            />
+            <app-validation-message *ngIf="reservaForm.get('inicio').errors?.required" text="Início obrigatório."></app-validation-message>
+        </div>
+        <div class="form-group">
+            <label for="fim">Fim</label>
+            <input
+                id="fim"
+                formControlName="fim" 
+                type="time" 
+                class="form-control form-control-sm"
+            />
+            <app-validation-message *ngIf="reservaForm.get('fim').errors?.required" text="Fim obrigatório."></app-validation-message>
+        </div>
+        <div class="form-group">
+            <label for="razao">Razão</label>
+            <textarea
+                id="razao"
+                formControlName="razao" 
+                class="form-control form-control-sm md-textarea"
+                rows="3"
+            ></textarea>
+            <app-validation-message *ngIf="reservaForm.get('razao').errors?.required" text="Razão obrigatória."></app-validation-message>
+        </div>
+        <button [disabled]="reservaForm.invalid" class="btn btn-sm btn-dark mt-3" type="submit">Reservar</button>
+    </form>
+</div>

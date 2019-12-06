@@ -1,0 +1,31 @@
+<div class="container-fluid text-center">
+    <form [formGroup]="loginForm" class="form-signin" (submit)="login()">
+        <img class="mb-4" src="assets/img/logo-js.png" alt="" width="214" height="236">
+        <h1 class="h3 mb-3 font-weight-normal">Entrar na Aplicação</h1>
+        <div class="form-group">
+            <label class="sr-only" for="email">EMAIL</label>
+            <input
+                id="email"
+                formControlName="email" 
+                type="text" 
+                class="form-control"  
+                placeholder="email" 
+                autofocus 
+            />
+            <app-validation-message *ngIf="loginForm.get('email').errors?.required" text="Email obrigatório."></app-validation-message>
+            <app-validation-message *ngIf="loginForm.get('email').errors?.email" text="Email inválido."></app-validation-message>
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="senha">SENHA</label>
+            <input 
+                id="senha"
+                formControlName="senha" 
+                type="password" 
+                class="form-control" 
+                placeholder="senha" 
+            />
+            <app-validation-message *ngIf="loginForm.get('senha').errors?.required" text="Senha obrigatória."></app-validation-message>
+        </div>
+        <button [disabled]="loginForm.invalid" class="btn btn-lg btn-dark btn-block mt-1" type="submit">Entrar</button>
+    </form>
+</div>
